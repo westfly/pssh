@@ -67,7 +67,11 @@ def do_prsync(hosts, local, remote, opts):
         os.makedirs(opts.errdir)
     manager = Manager(opts)
     for host, port, user in hosts:
-        ssh = ['ssh']
+	ssh = []
+	if opts.common_password:
+	   ssh += ['sshpass', '-p', opts.common_password, 'ssh']
+	else:
+       	   ssh += ['ssh']
         if opts.options:
             ssh += ['-o', opts.options]
         if port:
@@ -91,6 +95,7 @@ def do_prsync(hosts, local, remote, opts):
             cmd.append('%s@%s:%s' % (user, host, remote))
         else:
             cmd.append('%s:%s' % (host, remote))
+	print cmd
         t = Task(host, port, user, cmd, opts)
         manager.add_task(t)
     manager.run()

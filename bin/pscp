@@ -59,7 +59,10 @@ def do_pscp(hosts, localargs, remote, opts):
         os.makedirs(opts.errdir)
     manager = Manager(opts)
     for host, port, user in hosts:
-        cmd = ['scp', '-qC']
+        cmd = []
+        if opts.common_password: 
+            cmd += ['sshpass', '-p', opts.common_password]
+        cmd += ['scp', '-qC']
         if opts.options:
             cmd += ['-o', opts.options]
         if port:
