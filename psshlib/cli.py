@@ -44,7 +44,7 @@ def common_parser():
     parser.add_option('-A', '--askpass', dest='askpass', action='store_true',
             help='Ask for a password (OPTIONAL)')
     parser.add_option('-C', '--common-password', dest='common_password', type='string',
-            help='Ask for a password (OPTIONAL)')
+            help='Give common password (OPTIONAL)')
     parser.add_option('-x', '--extra-args', action='callback', type='string',
             metavar='ARGS', callback=shlex_append, dest='extra',
             help='Extra command-line arguments, with processing for '

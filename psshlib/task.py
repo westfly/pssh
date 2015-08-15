@@ -83,7 +83,7 @@ class Task(object):
         # Create the subprocess.  Since we carefully call set_cloexec() on
         # all open files, we specify close_fds=False.
         print " ".join(self.cmd)
-        self.proc = Popen(self.cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True,
+        self.proc = Popen(self.cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE,
                 close_fds=False, preexec_fn=os.setsid, env=environ)
         self.timestamp = time.time()
         if self.inputbuffer:
